@@ -11,22 +11,29 @@ export const MyNavbar = () => {
   return (
     <Navbar position="sticky" maxWidth="xl">
       <NavbarBrand>
-        <p className="text-2xl font-bold text-inherit">UserSum</p>
+        <Link
+          href="/"
+          className="inline-flex gap-x-2 font-serif text-3xl font-bold italic"
+        >
+          <span className="text-primary">User</span>{" "}
+          <span className="text-secondary">Sum</span>
+        </Link>
       </NavbarBrand>
-      <NavbarContent className="hidden gap-4 sm:flex" justify="center">
+      <NavbarContent
+        className="hidden gap-4 sm:flex md:gap-8 lg:gap-12"
+        justify="center"
+      >
         <NavbarItem>
-          <Link color="foreground" href="#">
-            Features
+          <Link color="foreground" href="#" aria-current="page">
+            Ai Painter
           </Link>
         </NavbarItem>
         <NavbarItem isActive>
-          <Link href="#" aria-current="page">
-            Customers
-          </Link>
+          <Link href="#">Coser</Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="#">
-            Integrations
+          <Link href="#" color="foreground" aria-current="page">
+            Dancer
           </Link>
         </NavbarItem>
       </NavbarContent>
@@ -35,7 +42,7 @@ export const MyNavbar = () => {
           <Link href="#">Login</Link>
         </NavbarItem>
         <NavbarItem>
-          <Button as={Link} color="primary" href="#" variant="flat">
+          <Button as={Link} color="primary" href="/" variant="flat">
             Sign Up
           </Button>
         </NavbarItem>

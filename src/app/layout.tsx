@@ -18,16 +18,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${GeistSans.variable}`}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${GeistSans.variable}`}
+    >
       <body>
         <TRPCReactProvider>
           <NextUIProvider>
-            <main className="bg-content1 text-foreground">
+            <div className="bg-content1 text-foreground">
               <MyNavbar />
-              <div className="container min-h-screen max-w-screen-xl">
-                {children}
-              </div>
-            </main>
+
+              <main className="bg-content2">
+                <div className="container min-h-screen max-w-screen-xl py-12">
+                  {children}
+                </div>
+              </main>
+            </div>
           </NextUIProvider>
         </TRPCReactProvider>
       </body>
