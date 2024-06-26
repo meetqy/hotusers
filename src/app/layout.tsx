@@ -3,6 +3,7 @@ import "~/styles/globals.css";
 import { GeistSans } from "geist/font/sans";
 
 import { TRPCReactProvider } from "~/trpc/react";
+import { NextUIProvider } from "@nextui-org/react";
 
 export const metadata = {
   title: "Create T3 App",
@@ -18,7 +19,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
       <body>
-        <TRPCReactProvider>{children}</TRPCReactProvider>
+        <TRPCReactProvider>
+          <NextUIProvider>
+            <main className="min-h-screen bg-content1 text-foreground">
+              <div className="container">{children}</div>
+            </main>
+          </NextUIProvider>
+        </TRPCReactProvider>
       </body>
     </html>
   );
