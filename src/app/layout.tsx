@@ -3,8 +3,8 @@ import "~/styles/globals.css";
 import { GeistSans } from "geist/font/sans";
 
 import { TRPCReactProvider } from "~/trpc/react";
-import { NextUIProvider } from "@nextui-org/react";
 import { MyNavbar } from "~/components/navbar";
+import { Providers } from "./providers";
 
 export const metadata = {
   title: "Create T3 App",
@@ -25,8 +25,8 @@ export default function RootLayout({
     >
       <body>
         <TRPCReactProvider>
-          <NextUIProvider>
-            <div className="bg-content1 text-foreground">
+          <Providers>
+            <>
               <MyNavbar />
 
               <main className="bg-content2">
@@ -34,8 +34,8 @@ export default function RootLayout({
                   {children}
                 </div>
               </main>
-            </div>
-          </NextUIProvider>
+            </>
+          </Providers>
         </TRPCReactProvider>
       </body>
     </html>
