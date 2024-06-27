@@ -1,10 +1,5 @@
-import { Button } from "@nextui-org/react";
+import { redirect } from "next/navigation";
 
 export default function Page() {
-  return (
-    <div>
-      <h1>Page</h1>
-      <Button>Press me</Button>
-    </div>
-  );
+  redirect("/en");
 }

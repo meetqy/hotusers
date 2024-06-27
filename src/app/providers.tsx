@@ -13,7 +13,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       <NextThemesProvider attribute="class" defaultTheme="light">
         <main
           className={cn(
-            "bg-content1 text-foreground",
+            "bg-background text-foreground",
             isDarkMode ? "dark" : "light",
           )}
         >
