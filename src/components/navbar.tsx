@@ -1,5 +1,4 @@
 import {
-  Link,
   Navbar,
   NavbarBrand,
   NavbarContent,
@@ -7,6 +6,7 @@ import {
 } from "@nextui-org/react";
 import { ThemeSwitcher } from "./theme-switcher";
 import { LanguageSelect } from "./language-select";
+import { Link } from "~/navigation";
 
 export const MyNavbar = () => {
   return (
