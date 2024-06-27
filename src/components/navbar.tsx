@@ -14,10 +14,9 @@ export const MyNavbar = () => {
       <NavbarBrand>
         <Link
           href="/"
-          className="inline-flex gap-x-2 font-serif text-3xl font-bold italic"
+          className="inline-flex font-serif text-3xl font-bold italic"
         >
-          <span className="text-primary">User</span>{" "}
-          <span className="text-secondary">Sum</span>
+          User<span className="text-primary">Sum</span>
         </Link>
       </NavbarBrand>
       <NavbarContent
