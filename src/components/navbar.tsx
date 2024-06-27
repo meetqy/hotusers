@@ -6,6 +6,7 @@ import {
   NavbarItem,
 } from "@nextui-org/react";
 import { ThemeSwitcher } from "./theme-switcher";
+import { LanguageSelect } from "./language-select";
 
 export const MyNavbar = () => {
   return (
@@ -40,6 +41,9 @@ export const MyNavbar = () => {
       <NavbarContent justify="end">
         <NavbarItem>
           <ThemeSwitcher />
+        </NavbarItem>
+        <NavbarItem>
+          <LanguageSelect />
         </NavbarItem>
       </NavbarContent>
     </Navbar>
