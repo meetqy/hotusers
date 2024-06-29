@@ -5,6 +5,7 @@ import { GeistSans } from "geist/font/sans";
 import { TRPCReactProvider } from "~/trpc/react";
 import { MyNavbar } from "~/components/navbar";
 import { Providers } from "../providers";
+import { cn } from "~/utils/cn";
 
 export const metadata = {
   title: "Create T3 App",
@@ -18,23 +19,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-      className={`${GeistSans.variable}`}
-    >
+    <html lang="en" suppressHydrationWarning className={cn(GeistSans.variable)}>
       <body>
         <TRPCReactProvider>
           <Providers>
-            <>
-              <MyNavbar />
+            <MyNavbar />
 
-              <main>
-                <div className="container min-h-screen max-w-screen-xl py-12">
-                  {children}
-                </div>
-              </main>
-            </>
+            <main className="h-full min-h-[calc(100vh-4rem)]">
+              <div className="container w-full max-w-screen-xl">{children}</div>
+            </main>
           </Providers>
         </TRPCReactProvider>
       </body>
