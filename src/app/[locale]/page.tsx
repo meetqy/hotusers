@@ -98,7 +98,7 @@ const teamMembers: UserItem[] = [
 
 export default function Component() {
   return (
-    <section className="py-12">
+    <section className="py-12 md:py-24 xl:py-36">
       <div className="mx-auto flex flex-col text-center">
         <h2 className="font-medium text-secondary">Discover 50 users</h2>
         <Spacer y={2} />

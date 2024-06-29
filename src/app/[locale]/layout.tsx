@@ -26,7 +26,9 @@ export default function RootLayout({
             <MyNavbar />
 
             <main className="h-full min-h-[calc(100vh-4rem)]">
-              <div className="container w-full max-w-screen-xl">{children}</div>
+              <div className="container w-full max-w-screen-xl px-0 xl:px-8">
+                {children}
+              </div>
             </main>
           </Providers>
         </TRPCReactProvider>
