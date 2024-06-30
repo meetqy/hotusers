@@ -1,12 +1,5 @@
 import { Button, Image } from "@nextui-org/react";
-import {
-  FacebookIcon,
-  GithubIcon,
-  InstagramIcon,
-  LinkedinIcon,
-  PinterestIcon,
-  TwitterXIcon,
-} from "~/components/logos";
+import { Icon } from "@iconify/react";
 
 export default function Page() {
   return (
@@ -42,7 +35,7 @@ export default function Page() {
               color="secondary"
             >
               <span className="text-xl font-medium">Github</span>
-              <GithubIcon className="h-10 w-10" />
+              <Icon icon={"mdi:github"} className="text-5xl" />
             </Button>
           ))}
         </div>

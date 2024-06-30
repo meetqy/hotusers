@@ -16,7 +16,7 @@ export const MyNavbar = () => {
           href="/"
           className="inline-flex font-serif text-3xl font-bold italic"
         >
-          User<span className="text-primary">Sum</span>
+          Hot<span className="text-primary">Users</span>
         </Link>
       </NavbarBrand>
       <NavbarContent

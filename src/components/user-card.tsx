@@ -3,7 +3,7 @@
 import React from "react";
 import { Avatar, Button, cn } from "@nextui-org/react";
 import { Link } from "~/navigation";
-import { GithubIcon, TwitterIcon } from "./logos";
+import { Icon } from "@iconify/react";
 
 export type UserItem = {
   name: string;
@@ -35,13 +35,13 @@ const UserCard = React.forwardRef<HTMLDivElement, UserCardProps>(
       <div className="flex">
         {social.twitter && (
           <Button as={Link} href="#" isIconOnly variant="light" radius="full">
-            <TwitterIcon className="h-5 w-5 text-default-400" />
+            <Icon icon={"mdi:twitter"} className="h-6 w-6 text-default-400" />
           </Button>
         )}
 
         {social.github && (
           <Button as={Link} href="#" isIconOnly variant="light" radius="full">
-            <GithubIcon className="h-5 w-5 text-default-400" />
+            <Icon icon={"mdi:github"} className="h-6 w-6 text-default-400" />
           </Button>
         )}
       </div>
