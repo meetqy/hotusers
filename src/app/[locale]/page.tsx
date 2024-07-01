@@ -26,7 +26,7 @@ const getList = async () => {
 export default async function Page() {
   const res = await getList();
   if (!res) return notFound();
-  const { data, meta } = res;
+  const { data } = res;
 
   return (
     <section className="py-12 md:py-24 xl:py-36">
