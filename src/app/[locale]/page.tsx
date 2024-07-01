@@ -1,102 +1,33 @@
-"use client";
-
 import { Button, Spacer } from "@nextui-org/react";
-import UserCard, { type UserItem } from "~/components/user-card";
+import { notFound } from "next/navigation";
+import UserCard from "~/components/user-card";
+import { strapi } from "~/strapi/api";
 
-const teamMembers: UserItem[] = [
-  {
-    name: "John Doe",
-    avatar: "https://i.pravatar.cc/150?u=a04258114e29026708c",
-    role: "CEO",
-    bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.",
-    social: {
-      twitter: "@john-doe",
-      github: "@john-doe",
+const getList = async () => {
+  const res = await strapi.GET("/accounts", {
+    params: {
+      query: {
+        // @ts-ignore
+        "populate[0]": "tags",
+        "populate[1]": "xhs",
+        "populate[2]": "twitter",
+        "populate[3]": "github",
+      },
     },
-  },
-  {
-    name: "Jane Doe",
-    avatar: "https://i.pravatar.cc/150?u=a04258ab4e29066708c",
-    role: "CTO",
-    bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.",
-    social: {
-      twitter: "@jane-doe",
-      github: "@jane-doe",
-    },
-  },
-  {
-    name: "Robert Doe",
-    avatar: "https://i.pravatar.cc/150?u=a04258114e29066708c",
-    role: "Principal Designer",
-    bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.",
-    social: {
-      twitter: "@robert-doe",
-      github: "@robert-doe",
-    },
-  },
-  {
-    name: "Mark Doe",
-    avatar: "https://i.pravatar.cc/150?u=a04258a14e29066708c",
-    role: "Principal Engineer",
-    bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.",
-    social: {
-      twitter: "@mark-doe",
-      github: "@mark-doe",
-    },
-  },
-  {
-    name: "Frank Doe",
-    avatar: "https://i.pravatar.cc/150?u=a04258114e29526708c",
-    role: "Frontend Engineer",
-    bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.",
-    social: {
-      twitter: "@frank-doe",
-      github: "@frank-doe",
-    },
-  },
-  {
-    name: "Zoe Doe",
-    avatar: "https://i.pravatar.cc/150?u=a04258114e29926708c",
-    role: "Backend Engineer",
-    bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.",
-    social: {
-      twitter: "@zoe-doe",
-      github: "@zoe-doe",
-    },
-  },
-  {
-    name: "Bob Doe",
-    avatar: "https://i.pravatar.cc/150?u=a04258114e29b26708c",
-    role: "Product Manager",
-    bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.",
-    social: {
-      twitter: "@bob-doe",
-      github: "@bob-doe",
-    },
-  },
-  {
-    name: "Francis Doe",
-    avatar: "https://i.pravatar.cc/150?u=a04258b14e29326708c",
-    role: "Product Designer",
-    bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.",
-    social: {
-      twitter: "@francis-doe",
-      github: "@francis-doe",
-    },
-  },
-  {
-    name: "Milan Doe",
-    avatar: "https://i.pravatar.cc/150?u=a04258114e29326708c",
-    role: "Customer Support",
-    bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.",
-    social: {
-      twitter: "@milan-doe",
-      github: "@milan-doe",
-    },
-  },
-];
+  });
 
-export default function Component() {
+  if (!res.data) return null;
+
+  const data = res.data;
+
+  return data;
+};
+
+export default async function Page() {
+  const res = await getList();
+  if (!res) return notFound();
+  const { data, meta } = res;
+
   return (
     <section className="py-12 md:py-24 xl:py-36">
       <div className="mx-auto flex flex-col text-center">
@@ -127,8 +58,14 @@ export default function Component() {
         </div>
       </div>
       <div className="mt-12 grid w-full grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {teamMembers.map((member, index) => (
-          <UserCard key={index} {...member} />
+        {data?.map((member, index) => (
+          <UserCard
+            key={index}
+            user={{
+              ...member.attributes!,
+              id: member.id!,
+            }}
+          />
         ))}
       </div>
     </section>

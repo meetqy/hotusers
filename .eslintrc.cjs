@@ -1,5 +1,6 @@
 /** @type {import("eslint").Linter.Config} */
 const config = {
+  ignorePatterns: ["src/components/**/*", "src/strapi/*.d.ts", "*.d.ts"],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     project: true,
@@ -10,7 +11,6 @@ const config = {
     "plugin:@typescript-eslint/recommended-type-checked",
     "plugin:@typescript-eslint/stylistic-type-checked",
   ],
-  ignorePatterns: ["src/i18n.ts"],
   rules: {
     "@typescript-eslint/array-type": "off",
     "@typescript-eslint/consistent-type-definitions": "off",
@@ -21,6 +21,7 @@ const config = {
         fixStyle: "inline-type-imports",
       },
     ],
+    "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/no-unused-vars": [
       "warn",
       {
