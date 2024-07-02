@@ -74,14 +74,28 @@ const Scoicals = (props: { [key in string]: string | undefined }) => {
         </Button>
       )}
 
+      {props.douyin && (
+        <Button
+          as={Link}
+          href={props.douyin}
+          isIconOnly
+          variant="ghost"
+          color="warning"
+        >
+          <Icon icon={"fa6-brands:tiktok"} className="h-6 w-6" />
+        </Button>
+      )}
+
       {props.bilibili && (
-        <Link href={props.bilibili}>
-          <Image
-            src="/logos/bilibili.svg"
-            alt="bilibili scoical link"
-            className="aspect-square w-12"
-          />
-        </Link>
+        <Button
+          as={Link}
+          href={props.bilibili}
+          isIconOnly
+          variant="ghost"
+          color="warning"
+        >
+          <Icon icon={"ant-design:bilibili-outlined"} className="h-6 w-6" />
+        </Button>
       )}
 
       {props.xhs && (
