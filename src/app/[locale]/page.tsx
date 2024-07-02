@@ -8,10 +8,13 @@ const getList = async () => {
     params: {
       query: {
         // @ts-ignore
-        "populate[0]": "tags",
-        "populate[1]": "xhs",
-        "populate[2]": "twitter",
-        "populate[3]": "github",
+        "populate[tags]": true,
+        "populate[xhs]": true,
+        "populate[twitter]": true,
+        "populate[github]": true,
+        "populate[douyin]": true,
+        "populate[youtube]": true,
+        "populate[bilibili]": true,
         "populate[avatar][fields][0]": "url",
       },
     },

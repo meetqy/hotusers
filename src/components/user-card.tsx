@@ -22,9 +22,12 @@ const Tags = (props: {
         <Chip
           key={tag.id}
           variant="flat"
-          radius="full"
           size="sm"
+          as={Link}
+          // href={`/tag/${tag.id}`}
+          href={"#"}
           color="primary"
+          className="capitalize"
         >
           {tag.name}
         </Chip>
@@ -34,16 +37,16 @@ const Tags = (props: {
 
 const Scoicals = (props: { [key in string]: string | undefined }) => {
   return (
-    <div className="flex items-center">
+    <div className="flex items-center gap-x-2">
       {props.twitter && (
         <Button
           as={Link}
           href={props.twitter}
           isIconOnly
-          variant="light"
-          radius="full"
+          variant="ghost"
+          color="warning"
         >
-          <Icon icon={"mdi:twitter"} className="h-6 w-6 text-default-400" />
+          <Icon icon={"mdi:twitter"} className="h-6 w-6" />
         </Button>
       )}
 
@@ -52,10 +55,10 @@ const Scoicals = (props: { [key in string]: string | undefined }) => {
           as={Link}
           href={props.github}
           isIconOnly
-          variant="light"
-          radius="full"
+          variant="ghost"
+          color="warning"
         >
-          <Icon icon={"mdi:github"} className="h-6 w-6 text-default-400" />
+          <Icon icon={"mdi:github"} className="h-6 w-6" />
         </Button>
       )}
 
@@ -64,15 +67,25 @@ const Scoicals = (props: { [key in string]: string | undefined }) => {
           as={Link}
           href={props.youtube}
           isIconOnly
-          variant="light"
-          radius="full"
+          variant="ghost"
+          color="warning"
         >
-          <Icon icon={"mdi:youtube"} className="h-6 w-6 text-default-400" />
+          <Icon icon={"mdi:youtube"} className="h-6 w-6" />
         </Button>
       )}
 
+      {props.bilibili && (
+        <Link href={props.bilibili}>
+          <Image
+            src="/logos/bilibili.svg"
+            alt="bilibili scoical link"
+            className="aspect-square w-12"
+          />
+        </Link>
+      )}
+
       {props.xhs && (
-        <Link href={props.xhs} className="px-2">
+        <Link href={props.xhs}>
           <Image src="/logos/xhs.png" alt="xhs scoical link" className="w-12" />
         </Link>
       )}
@@ -94,29 +107,35 @@ const UserCard = (props: UserCardProps) => {
     }) ?? [];
 
   return (
-    <Link
+    <div
       className={cn(
-        "relative flex cursor-pointer flex-col items-center rounded-large border border-default-100 bg-content1 px-4 py-6 text-center transition-all hover:border-transparent hover:shadow-small",
+        "relative flex flex-col items-center rounded-large bg-content1 px-4 py-6 text-center shadow-small transition-all",
         className,
       )}
-      href={`/u/${id}`}
     >
-      <Avatar className="h-20 w-20" src={avatar?.data?.attributes?.url} />
-      <h3 className="mt-2 font-medium">{nickname || children}</h3>
+      <Link href={`/u/${id}`}>
+        <Avatar className="h-20 w-20" src={avatar?.data?.attributes?.url} />
+      </Link>
+      <h3 className="mt-2 text-large font-medium">
+        <Link href={`/u/${id}`} className="hover:text-primary">
+          {nickname || children}
+        </Link>
+      </h3>
       <div className="mt-2 flex flex-wrap gap-2">
         {<Tags tags={tagsData} />}
       </div>
-      <p className="mb-4 mt-2 text-default-600">{bio} </p>
+      <p className="mb-6 mt-2 line-clamp-3 text-default-600">{bio}</p>
 
       <Scoicals
-        twitter={user.twitter?.link ?? `https://x.com/${nickname}`}
-        github={user.github?.link ?? `https://github.com/${nickname}`}
-        youtube={user.youtube?.link ?? `https://youtube.com/${nickname}`}
+        twitter={user.twitter?.link}
+        github={user.github?.link}
+        youtube={user.youtube?.link}
         douyin={user.douyin?.link}
         xhs={user.xhs?.link}
         jike={user.jike?.link}
+        bilibili={user.bilibili?.link}
       />
-    </Link>
+    </div>
   );
 };
 
