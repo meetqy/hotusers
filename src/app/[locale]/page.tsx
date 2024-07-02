@@ -12,6 +12,7 @@ const getList = async () => {
         "populate[1]": "xhs",
         "populate[2]": "twitter",
         "populate[3]": "github",
+        "populate[avatar][fields][0]": "url",
       },
     },
   });
@@ -25,6 +26,7 @@ const getList = async () => {
 
 export default async function Page() {
   const res = await getList();
+
   if (!res) return notFound();
   const { data } = res;
 

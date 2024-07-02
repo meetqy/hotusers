@@ -36,6 +36,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/accounts/{id}/localizations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["post/accounts/{id}/localizations"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/tags": {
         parameters: {
             query?: never;
@@ -63,6 +79,22 @@ export interface paths {
         put: operations["put/tags/{id}"];
         post?: never;
         delete: operations["delete/tags/{id}"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/tags/{id}/localizations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["post/tags/{id}/localizations"];
+        delete?: never;
         options?: never;
         head?: never;
         patch?: never;
@@ -1333,18 +1365,59 @@ export interface components {
                 details?: Record<string, never>;
             };
         };
+        AccountLocalizationRequest: {
+            nickname: string;
+            twitter?: components["schemas"]["AccountAccountComponent"];
+            bio: string;
+            jike?: components["schemas"]["AccountAccountComponent"];
+            youtube?: components["schemas"]["AccountAccountComponent"];
+            github?: components["schemas"]["AccountAccountComponent"];
+            tags?: (number | string)[];
+            xhs?: components["schemas"]["AccountAccountComponent"];
+            douyin?: components["schemas"]["AccountAccountComponent"];
+            /** @example string or id */
+            avatar?: number | string;
+            bilibili?: components["schemas"]["AccountAccountComponent"];
+            locale: string;
+        };
         AccountRequest: {
             data: {
                 nickname: string;
                 twitter?: components["schemas"]["AccountAccountComponent"];
-                bio?: string;
+                bio: string;
                 jike?: components["schemas"]["AccountAccountComponent"];
                 youtube?: components["schemas"]["AccountAccountComponent"];
                 github?: components["schemas"]["AccountAccountComponent"];
                 tags?: (number | string)[];
                 xhs?: components["schemas"]["AccountAccountComponent"];
                 douyin?: components["schemas"]["AccountAccountComponent"];
-                avatar: string;
+                /** @example string or id */
+                avatar?: number | string;
+                bilibili?: components["schemas"]["AccountAccountComponent"];
+                locale?: string;
+            };
+        };
+        AccountResponseDataObjectLocalized: {
+            id?: number;
+            attributes?: components["schemas"]["Account"];
+        };
+        AccountLocalizationResponse: {
+            data?: components["schemas"]["AccountResponseDataObjectLocalized"];
+            meta?: Record<string, never>;
+        };
+        AccountListResponseDataItemLocalized: {
+            id?: number;
+            attributes?: components["schemas"]["Account"];
+        };
+        AccountLocalizationListResponse: {
+            data?: components["schemas"]["AccountListResponseDataItemLocalized"][];
+            meta?: {
+                pagination?: {
+                    page?: number;
+                    pageSize?: number;
+                    pageCount?: number;
+                    total?: number;
+                };
             };
         };
         AccountListResponseDataItem: {
@@ -1365,7 +1438,7 @@ export interface components {
         Account: {
             nickname: string;
             twitter?: components["schemas"]["AccountAccountComponent"];
-            bio?: string;
+            bio: string;
             jike?: components["schemas"]["AccountAccountComponent"];
             youtube?: components["schemas"]["AccountAccountComponent"];
             github?: components["schemas"]["AccountAccountComponent"];
@@ -1381,26 +1454,22 @@ export interface components {
                                     nickname?: string;
                                     twitter?: {
                                         id?: number;
-                                        name?: string;
                                         follows?: number;
                                         link?: string;
                                     };
                                     bio?: string;
                                     jike?: {
                                         id?: number;
-                                        name?: string;
                                         follows?: number;
                                         link?: string;
                                     };
                                     youtube?: {
                                         id?: number;
-                                        name?: string;
                                         follows?: number;
                                         link?: string;
                                     };
                                     github?: {
                                         id?: number;
-                                        name?: string;
                                         follows?: number;
                                         link?: string;
                                     };
@@ -1412,61 +1481,89 @@ export interface components {
                                     };
                                     xhs?: {
                                         id?: number;
-                                        name?: string;
                                         follows?: number;
                                         link?: string;
                                     };
                                     douyin?: {
                                         id?: number;
-                                        name?: string;
                                         follows?: number;
                                         link?: string;
                                     };
-                                    avatar?: string;
-                                    /** Format: date-time */
-                                    createdAt?: string;
-                                    /** Format: date-time */
-                                    updatedAt?: string;
-                                    createdBy?: {
+                                    avatar?: {
                                         data?: {
                                             id?: number;
                                             attributes?: {
-                                                firstname?: string;
-                                                lastname?: string;
-                                                username?: string;
-                                                /** Format: email */
-                                                email?: string;
-                                                resetPasswordToken?: string;
-                                                registrationToken?: string;
-                                                isActive?: boolean;
-                                                roles?: {
+                                                name?: string;
+                                                alternativeText?: string;
+                                                caption?: string;
+                                                width?: number;
+                                                height?: number;
+                                                formats?: unknown;
+                                                hash?: string;
+                                                ext?: string;
+                                                mime?: string;
+                                                /** Format: float */
+                                                size?: number;
+                                                url?: string;
+                                                previewUrl?: string;
+                                                provider?: string;
+                                                provider_metadata?: unknown;
+                                                related?: {
+                                                    data?: {
+                                                        id?: number;
+                                                        attributes?: Record<string, never>;
+                                                    }[];
+                                                };
+                                                folder?: {
                                                     data?: {
                                                         id?: number;
                                                         attributes?: {
                                                             name?: string;
-                                                            code?: string;
-                                                            description?: string;
-                                                            users?: {
+                                                            pathId?: number;
+                                                            parent?: {
+                                                                data?: {
+                                                                    id?: number;
+                                                                    attributes?: Record<string, never>;
+                                                                };
+                                                            };
+                                                            children?: {
                                                                 data?: {
                                                                     id?: number;
                                                                     attributes?: Record<string, never>;
                                                                 }[];
                                                             };
-                                                            permissions?: {
+                                                            files?: {
                                                                 data?: {
                                                                     id?: number;
                                                                     attributes?: {
-                                                                        action?: string;
-                                                                        actionParameters?: unknown;
-                                                                        subject?: string;
-                                                                        properties?: unknown;
-                                                                        conditions?: unknown;
-                                                                        role?: {
+                                                                        name?: string;
+                                                                        alternativeText?: string;
+                                                                        caption?: string;
+                                                                        width?: number;
+                                                                        height?: number;
+                                                                        formats?: unknown;
+                                                                        hash?: string;
+                                                                        ext?: string;
+                                                                        mime?: string;
+                                                                        /** Format: float */
+                                                                        size?: number;
+                                                                        url?: string;
+                                                                        previewUrl?: string;
+                                                                        provider?: string;
+                                                                        provider_metadata?: unknown;
+                                                                        related?: {
+                                                                            data?: {
+                                                                                id?: number;
+                                                                                attributes?: Record<string, never>;
+                                                                            }[];
+                                                                        };
+                                                                        folder?: {
                                                                             data?: {
                                                                                 id?: number;
                                                                                 attributes?: Record<string, never>;
                                                                             };
                                                                         };
+                                                                        folderPath?: string;
                                                                         /** Format: date-time */
                                                                         createdAt?: string;
                                                                         /** Format: date-time */
@@ -1474,7 +1571,100 @@ export interface components {
                                                                         createdBy?: {
                                                                             data?: {
                                                                                 id?: number;
-                                                                                attributes?: Record<string, never>;
+                                                                                attributes?: {
+                                                                                    firstname?: string;
+                                                                                    lastname?: string;
+                                                                                    username?: string;
+                                                                                    /** Format: email */
+                                                                                    email?: string;
+                                                                                    resetPasswordToken?: string;
+                                                                                    registrationToken?: string;
+                                                                                    isActive?: boolean;
+                                                                                    roles?: {
+                                                                                        data?: {
+                                                                                            id?: number;
+                                                                                            attributes?: {
+                                                                                                name?: string;
+                                                                                                code?: string;
+                                                                                                description?: string;
+                                                                                                users?: {
+                                                                                                    data?: {
+                                                                                                        id?: number;
+                                                                                                        attributes?: Record<string, never>;
+                                                                                                    }[];
+                                                                                                };
+                                                                                                permissions?: {
+                                                                                                    data?: {
+                                                                                                        id?: number;
+                                                                                                        attributes?: {
+                                                                                                            action?: string;
+                                                                                                            actionParameters?: unknown;
+                                                                                                            subject?: string;
+                                                                                                            properties?: unknown;
+                                                                                                            conditions?: unknown;
+                                                                                                            role?: {
+                                                                                                                data?: {
+                                                                                                                    id?: number;
+                                                                                                                    attributes?: Record<string, never>;
+                                                                                                                };
+                                                                                                            };
+                                                                                                            /** Format: date-time */
+                                                                                                            createdAt?: string;
+                                                                                                            /** Format: date-time */
+                                                                                                            updatedAt?: string;
+                                                                                                            createdBy?: {
+                                                                                                                data?: {
+                                                                                                                    id?: number;
+                                                                                                                    attributes?: Record<string, never>;
+                                                                                                                };
+                                                                                                            };
+                                                                                                            updatedBy?: {
+                                                                                                                data?: {
+                                                                                                                    id?: number;
+                                                                                                                    attributes?: Record<string, never>;
+                                                                                                                };
+                                                                                                            };
+                                                                                                        };
+                                                                                                    }[];
+                                                                                                };
+                                                                                                /** Format: date-time */
+                                                                                                createdAt?: string;
+                                                                                                /** Format: date-time */
+                                                                                                updatedAt?: string;
+                                                                                                createdBy?: {
+                                                                                                    data?: {
+                                                                                                        id?: number;
+                                                                                                        attributes?: Record<string, never>;
+                                                                                                    };
+                                                                                                };
+                                                                                                updatedBy?: {
+                                                                                                    data?: {
+                                                                                                        id?: number;
+                                                                                                        attributes?: Record<string, never>;
+                                                                                                    };
+                                                                                                };
+                                                                                            };
+                                                                                        }[];
+                                                                                    };
+                                                                                    blocked?: boolean;
+                                                                                    preferedLanguage?: string;
+                                                                                    /** Format: date-time */
+                                                                                    createdAt?: string;
+                                                                                    /** Format: date-time */
+                                                                                    updatedAt?: string;
+                                                                                    createdBy?: {
+                                                                                        data?: {
+                                                                                            id?: number;
+                                                                                            attributes?: Record<string, never>;
+                                                                                        };
+                                                                                    };
+                                                                                    updatedBy?: {
+                                                                                        data?: {
+                                                                                            id?: number;
+                                                                                            attributes?: Record<string, never>;
+                                                                                        };
+                                                                                    };
+                                                                                };
                                                                             };
                                                                         };
                                                                         updatedBy?: {
@@ -1486,6 +1676,7 @@ export interface components {
                                                                     };
                                                                 }[];
                                                             };
+                                                            path?: string;
                                                             /** Format: date-time */
                                                             createdAt?: string;
                                                             /** Format: date-time */
@@ -1503,10 +1694,9 @@ export interface components {
                                                                 };
                                                             };
                                                         };
-                                                    }[];
+                                                    };
                                                 };
-                                                blocked?: boolean;
-                                                preferedLanguage?: string;
+                                                folderPath?: string;
                                                 /** Format: date-time */
                                                 createdAt?: string;
                                                 /** Format: date-time */
@@ -1526,12 +1716,31 @@ export interface components {
                                             };
                                         };
                                     };
+                                    bilibili?: {
+                                        id?: number;
+                                        follows?: number;
+                                        link?: string;
+                                    };
+                                    /** Format: date-time */
+                                    createdAt?: string;
+                                    /** Format: date-time */
+                                    updatedAt?: string;
+                                    createdBy?: {
+                                        data?: {
+                                            id?: number;
+                                            attributes?: Record<string, never>;
+                                        };
+                                    };
                                     updatedBy?: {
                                         data?: {
                                             id?: number;
                                             attributes?: Record<string, never>;
                                         };
                                     };
+                                    localizations?: {
+                                        data?: unknown[];
+                                    };
+                                    locale?: string;
                                 };
                             }[];
                         };
@@ -1551,12 +1760,67 @@ export interface components {
                                 attributes?: Record<string, never>;
                             };
                         };
+                        localizations?: {
+                            data?: unknown[];
+                        };
+                        locale?: string;
                     };
                 }[];
             };
             xhs?: components["schemas"]["AccountAccountComponent"];
             douyin?: components["schemas"]["AccountAccountComponent"];
-            avatar: string;
+            avatar?: {
+                data?: {
+                    id?: number;
+                    attributes?: {
+                        name?: string;
+                        alternativeText?: string;
+                        caption?: string;
+                        width?: number;
+                        height?: number;
+                        formats?: unknown;
+                        hash?: string;
+                        ext?: string;
+                        mime?: string;
+                        /** Format: float */
+                        size?: number;
+                        url?: string;
+                        previewUrl?: string;
+                        provider?: string;
+                        provider_metadata?: unknown;
+                        related?: {
+                            data?: {
+                                id?: number;
+                                attributes?: Record<string, never>;
+                            }[];
+                        };
+                        folder?: {
+                            data?: {
+                                id?: number;
+                                attributes?: Record<string, never>;
+                            };
+                        };
+                        folderPath?: string;
+                        /** Format: date-time */
+                        createdAt?: string;
+                        /** Format: date-time */
+                        updatedAt?: string;
+                        createdBy?: {
+                            data?: {
+                                id?: number;
+                                attributes?: Record<string, never>;
+                            };
+                        };
+                        updatedBy?: {
+                            data?: {
+                                id?: number;
+                                attributes?: Record<string, never>;
+                            };
+                        };
+                    };
+                };
+            };
+            bilibili?: components["schemas"]["AccountAccountComponent"];
             /** Format: date-time */
             createdAt?: string;
             /** Format: date-time */
@@ -1573,6 +1837,10 @@ export interface components {
                     attributes?: Record<string, never>;
                 };
             };
+            localizations?: {
+                data?: components["schemas"]["AccountListResponseDataItemLocalized"][];
+            };
+            locale?: string;
         };
         AccountResponseDataObject: {
             id?: number;
@@ -1584,14 +1852,42 @@ export interface components {
         };
         AccountAccountComponent: {
             id?: number;
-            name?: string;
             follows?: number;
             link?: string;
+        };
+        TagLocalizationRequest: {
+            name: string;
+            accounts?: (number | string)[];
+            locale: string;
         };
         TagRequest: {
             data: {
                 name: string;
                 accounts?: (number | string)[];
+                locale?: string;
+            };
+        };
+        TagResponseDataObjectLocalized: {
+            id?: number;
+            attributes?: components["schemas"]["Tag"];
+        };
+        TagLocalizationResponse: {
+            data?: components["schemas"]["TagResponseDataObjectLocalized"];
+            meta?: Record<string, never>;
+        };
+        TagListResponseDataItemLocalized: {
+            id?: number;
+            attributes?: components["schemas"]["Tag"];
+        };
+        TagLocalizationListResponse: {
+            data?: components["schemas"]["TagListResponseDataItemLocalized"][];
+            meta?: {
+                pagination?: {
+                    page?: number;
+                    pageSize?: number;
+                    pageCount?: number;
+                    total?: number;
+                };
             };
         };
         TagListResponseDataItem: {
@@ -1618,26 +1914,22 @@ export interface components {
                         nickname?: string;
                         twitter?: {
                             id?: number;
-                            name?: string;
                             follows?: number;
                             link?: string;
                         };
                         bio?: string;
                         jike?: {
                             id?: number;
-                            name?: string;
                             follows?: number;
                             link?: string;
                         };
                         youtube?: {
                             id?: number;
-                            name?: string;
                             follows?: number;
                             link?: string;
                         };
                         github?: {
                             id?: number;
-                            name?: string;
                             follows?: number;
                             link?: string;
                         };
@@ -1761,22 +2053,162 @@ export interface components {
                                             attributes?: Record<string, never>;
                                         };
                                     };
+                                    localizations?: {
+                                        data?: unknown[];
+                                    };
+                                    locale?: string;
                                 };
                             }[];
                         };
                         xhs?: {
                             id?: number;
-                            name?: string;
                             follows?: number;
                             link?: string;
                         };
                         douyin?: {
                             id?: number;
-                            name?: string;
                             follows?: number;
                             link?: string;
                         };
-                        avatar?: string;
+                        avatar?: {
+                            data?: {
+                                id?: number;
+                                attributes?: {
+                                    name?: string;
+                                    alternativeText?: string;
+                                    caption?: string;
+                                    width?: number;
+                                    height?: number;
+                                    formats?: unknown;
+                                    hash?: string;
+                                    ext?: string;
+                                    mime?: string;
+                                    /** Format: float */
+                                    size?: number;
+                                    url?: string;
+                                    previewUrl?: string;
+                                    provider?: string;
+                                    provider_metadata?: unknown;
+                                    related?: {
+                                        data?: {
+                                            id?: number;
+                                            attributes?: Record<string, never>;
+                                        }[];
+                                    };
+                                    folder?: {
+                                        data?: {
+                                            id?: number;
+                                            attributes?: {
+                                                name?: string;
+                                                pathId?: number;
+                                                parent?: {
+                                                    data?: {
+                                                        id?: number;
+                                                        attributes?: Record<string, never>;
+                                                    };
+                                                };
+                                                children?: {
+                                                    data?: {
+                                                        id?: number;
+                                                        attributes?: Record<string, never>;
+                                                    }[];
+                                                };
+                                                files?: {
+                                                    data?: {
+                                                        id?: number;
+                                                        attributes?: {
+                                                            name?: string;
+                                                            alternativeText?: string;
+                                                            caption?: string;
+                                                            width?: number;
+                                                            height?: number;
+                                                            formats?: unknown;
+                                                            hash?: string;
+                                                            ext?: string;
+                                                            mime?: string;
+                                                            /** Format: float */
+                                                            size?: number;
+                                                            url?: string;
+                                                            previewUrl?: string;
+                                                            provider?: string;
+                                                            provider_metadata?: unknown;
+                                                            related?: {
+                                                                data?: {
+                                                                    id?: number;
+                                                                    attributes?: Record<string, never>;
+                                                                }[];
+                                                            };
+                                                            folder?: {
+                                                                data?: {
+                                                                    id?: number;
+                                                                    attributes?: Record<string, never>;
+                                                                };
+                                                            };
+                                                            folderPath?: string;
+                                                            /** Format: date-time */
+                                                            createdAt?: string;
+                                                            /** Format: date-time */
+                                                            updatedAt?: string;
+                                                            createdBy?: {
+                                                                data?: {
+                                                                    id?: number;
+                                                                    attributes?: Record<string, never>;
+                                                                };
+                                                            };
+                                                            updatedBy?: {
+                                                                data?: {
+                                                                    id?: number;
+                                                                    attributes?: Record<string, never>;
+                                                                };
+                                                            };
+                                                        };
+                                                    }[];
+                                                };
+                                                path?: string;
+                                                /** Format: date-time */
+                                                createdAt?: string;
+                                                /** Format: date-time */
+                                                updatedAt?: string;
+                                                createdBy?: {
+                                                    data?: {
+                                                        id?: number;
+                                                        attributes?: Record<string, never>;
+                                                    };
+                                                };
+                                                updatedBy?: {
+                                                    data?: {
+                                                        id?: number;
+                                                        attributes?: Record<string, never>;
+                                                    };
+                                                };
+                                            };
+                                        };
+                                    };
+                                    folderPath?: string;
+                                    /** Format: date-time */
+                                    createdAt?: string;
+                                    /** Format: date-time */
+                                    updatedAt?: string;
+                                    createdBy?: {
+                                        data?: {
+                                            id?: number;
+                                            attributes?: Record<string, never>;
+                                        };
+                                    };
+                                    updatedBy?: {
+                                        data?: {
+                                            id?: number;
+                                            attributes?: Record<string, never>;
+                                        };
+                                    };
+                                };
+                            };
+                        };
+                        bilibili?: {
+                            id?: number;
+                            follows?: number;
+                            link?: string;
+                        };
                         /** Format: date-time */
                         createdAt?: string;
                         /** Format: date-time */
@@ -1793,6 +2225,10 @@ export interface components {
                                 attributes?: Record<string, never>;
                             };
                         };
+                        localizations?: {
+                            data?: unknown[];
+                        };
+                        locale?: string;
                     };
                 }[];
             };
@@ -1812,6 +2248,10 @@ export interface components {
                     attributes?: Record<string, never>;
                 };
             };
+            localizations?: {
+                data?: components["schemas"]["TagListResponseDataItemLocalized"][];
+            };
+            locale?: string;
         };
         TagResponseDataObject: {
             id?: number;
@@ -2292,6 +2732,77 @@ export interface operations {
             };
         };
     };
+    "post/accounts/{id}/localizations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AccountLocalizationRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AccountLocalizationResponse"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Internal Server Error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
     "get/tags": {
         parameters: {
             query?: {
@@ -2603,6 +3114,77 @@ export interface operations {
                 };
                 content: {
                     "application/json": number;
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Internal Server Error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    "post/tags/{id}/localizations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["TagLocalizationRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TagLocalizationResponse"];
                 };
             };
             /** @description Bad Request */

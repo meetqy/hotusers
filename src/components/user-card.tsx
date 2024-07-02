@@ -101,7 +101,7 @@ const UserCard = (props: UserCardProps) => {
       )}
       href={`/u/${id}`}
     >
-      <Avatar className="h-20 w-20" src={avatar} />
+      <Avatar className="h-20 w-20" src={avatar?.data?.attributes?.url} />
       <h3 className="mt-2 font-medium">{nickname || children}</h3>
       <div className="mt-2 flex flex-wrap gap-2">
         {<Tags tags={tagsData} />}
