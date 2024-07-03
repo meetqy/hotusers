@@ -44,6 +44,30 @@ const Tags = (props: {
 const Scoicals = (props: { [key in string]: string | undefined }) => {
   return (
     <div className="flex items-center gap-x-2">
+      {props.instagram && (
+        <Button
+          as={Link}
+          href={props.instagram}
+          isIconOnly
+          variant="ghost"
+          color="warning"
+        >
+          <Icon icon={"mdi:instagram"} className="h-6 w-6" />
+        </Button>
+      )}
+
+      {props.weibo && (
+        <Button
+          as={Link}
+          href={props.weibo}
+          isIconOnly
+          variant="ghost"
+          color="warning"
+        >
+          <Icon icon={"mdi:sina-weibo"} className="h-6 w-6" />
+        </Button>
+      )}
+
       {props.twitter && (
         <Button
           as={Link}
@@ -171,6 +195,8 @@ const UserCard = (props: UserCardProps) => {
         xhs={user.xhs?.link}
         jike={user.jike?.link}
         bilibili={user.bilibili?.link}
+        instagram={user.instagram?.link}
+        weibo={user.weibo?.link}
       />
     </div>
   );

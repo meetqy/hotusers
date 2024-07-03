@@ -17,6 +17,8 @@ const getList = async (locale = "en") => {
         "populate[youtube]": true,
         "populate[bilibili]": true,
         "populate[jike]": true,
+        "populate[instagram]": true,
+        "populate[weibo]": true,
         "populate[avatar][fields][0]": "url",
       },
     },

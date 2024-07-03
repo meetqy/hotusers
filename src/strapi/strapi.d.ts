@@ -1362,6 +1362,8 @@ export interface components {
             /** @example string or id */
             avatar?: number | string;
             bilibili?: components["schemas"]["AccountAccountComponent"];
+            instagram?: components["schemas"]["AccountAccountComponent"];
+            weibo?: components["schemas"]["AccountAccountComponent"];
             locale: string;
         };
         AccountRequest: {
@@ -1378,6 +1380,8 @@ export interface components {
                 /** @example string or id */
                 avatar?: number | string;
                 bilibili?: components["schemas"]["AccountAccountComponent"];
+                instagram?: components["schemas"]["AccountAccountComponent"];
+                weibo?: components["schemas"]["AccountAccountComponent"];
                 locale?: string;
             };
         };
@@ -1705,6 +1709,16 @@ export interface components {
                                         follows?: number;
                                         link?: string;
                                     };
+                                    instagram?: {
+                                        id?: number;
+                                        follows?: number;
+                                        link?: string;
+                                    };
+                                    weibo?: {
+                                        id?: number;
+                                        follows?: number;
+                                        link?: string;
+                                    };
                                     /** Format: date-time */
                                     createdAt?: string;
                                     /** Format: date-time */
@@ -1804,6 +1818,8 @@ export interface components {
                 };
             };
             bilibili?: components["schemas"]["AccountAccountComponent"];
+            instagram?: components["schemas"]["AccountAccountComponent"];
+            weibo?: components["schemas"]["AccountAccountComponent"];
             /** Format: date-time */
             createdAt?: string;
             /** Format: date-time */
@@ -2159,6 +2175,16 @@ export interface components {
                             };
                         };
                         bilibili?: {
+                            id?: number;
+                            follows?: number;
+                            link?: string;
+                        };
+                        instagram?: {
+                            id?: number;
+                            follows?: number;
+                            link?: string;
+                        };
+                        weibo?: {
                             id?: number;
                             follows?: number;
                             link?: string;
