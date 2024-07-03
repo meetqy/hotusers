@@ -2,7 +2,6 @@ import { Button, Image } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
 import { strapi } from "~/strapi/api";
 import { notFound } from "next/navigation";
-import { Link } from "~/navigation";
 
 const getUserById = async (id: string, locale = "en") => {
   const res = await strapi.GET("/accounts", {
