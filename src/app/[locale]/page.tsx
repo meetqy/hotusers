@@ -15,6 +15,7 @@ const getList = async () => {
         "populate[douyin]": true,
         "populate[youtube]": true,
         "populate[bilibili]": true,
+        "populate[jike]": true,
         "populate[avatar][fields][0]": "url",
       },
     },
