@@ -17,7 +17,6 @@ const Tags = (props: {
   tags: { id: number | undefined; name: string | undefined }[];
   locale: string;
 }) => {
-  console.log(Tags);
   return props.tags.map(
     (tag) =>
       tag.id &&
