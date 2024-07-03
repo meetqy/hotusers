@@ -20,6 +20,7 @@ const getList = async (locale = "en") => {
         "populate[instagram]": true,
         "populate[weibo]": true,
         "populate[avatar][fields][0]": "url",
+        "sort[0]": "createdAt:desc",
       },
     },
   });
