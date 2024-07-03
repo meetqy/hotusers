@@ -84,22 +84,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/tags/{id}/localizations": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["post/tags/{id}/localizations"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/upload": {
         parameters: {
             query?: never;
@@ -1725,6 +1709,8 @@ export interface components {
                                     createdAt?: string;
                                     /** Format: date-time */
                                     updatedAt?: string;
+                                    /** Format: date-time */
+                                    publishedAt?: string;
                                     createdBy?: {
                                         data?: {
                                             id?: number;
@@ -1744,6 +1730,7 @@ export interface components {
                                 };
                             }[];
                         };
+                        name_zh?: string;
                         /** Format: date-time */
                         createdAt?: string;
                         /** Format: date-time */
@@ -1760,10 +1747,6 @@ export interface components {
                                 attributes?: Record<string, never>;
                             };
                         };
-                        localizations?: {
-                            data?: unknown[];
-                        };
-                        locale?: string;
                     };
                 }[];
             };
@@ -1825,6 +1808,8 @@ export interface components {
             createdAt?: string;
             /** Format: date-time */
             updatedAt?: string;
+            /** Format: date-time */
+            publishedAt?: string;
             createdBy?: {
                 data?: {
                     id?: number;
@@ -1855,39 +1840,11 @@ export interface components {
             follows?: number;
             link?: string;
         };
-        TagLocalizationRequest: {
-            name: string;
-            accounts?: (number | string)[];
-            locale: string;
-        };
         TagRequest: {
             data: {
                 name: string;
                 accounts?: (number | string)[];
-                locale?: string;
-            };
-        };
-        TagResponseDataObjectLocalized: {
-            id?: number;
-            attributes?: components["schemas"]["Tag"];
-        };
-        TagLocalizationResponse: {
-            data?: components["schemas"]["TagResponseDataObjectLocalized"];
-            meta?: Record<string, never>;
-        };
-        TagListResponseDataItemLocalized: {
-            id?: number;
-            attributes?: components["schemas"]["Tag"];
-        };
-        TagLocalizationListResponse: {
-            data?: components["schemas"]["TagListResponseDataItemLocalized"][];
-            meta?: {
-                pagination?: {
-                    page?: number;
-                    pageSize?: number;
-                    pageCount?: number;
-                    total?: number;
-                };
+                name_zh: string;
             };
         };
         TagListResponseDataItem: {
@@ -1944,6 +1901,7 @@ export interface components {
                                             attributes?: Record<string, never>;
                                         }[];
                                     };
+                                    name_zh?: string;
                                     /** Format: date-time */
                                     createdAt?: string;
                                     /** Format: date-time */
@@ -2053,10 +2011,6 @@ export interface components {
                                             attributes?: Record<string, never>;
                                         };
                                     };
-                                    localizations?: {
-                                        data?: unknown[];
-                                    };
-                                    locale?: string;
                                 };
                             }[];
                         };
@@ -2213,6 +2167,8 @@ export interface components {
                         createdAt?: string;
                         /** Format: date-time */
                         updatedAt?: string;
+                        /** Format: date-time */
+                        publishedAt?: string;
                         createdBy?: {
                             data?: {
                                 id?: number;
@@ -2232,6 +2188,7 @@ export interface components {
                     };
                 }[];
             };
+            name_zh: string;
             /** Format: date-time */
             createdAt?: string;
             /** Format: date-time */
@@ -2248,10 +2205,6 @@ export interface components {
                     attributes?: Record<string, never>;
                 };
             };
-            localizations?: {
-                data?: components["schemas"]["TagListResponseDataItemLocalized"][];
-            };
-            locale?: string;
         };
         TagResponseDataObject: {
             id?: number;
@@ -3114,77 +3067,6 @@ export interface operations {
                 };
                 content: {
                     "application/json": number;
-                };
-            };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Error"];
-                };
-            };
-            /** @description Unauthorized */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Error"];
-                };
-            };
-            /** @description Forbidden */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Error"];
-                };
-            };
-            /** @description Not Found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Error"];
-                };
-            };
-            /** @description Internal Server Error */
-            500: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Error"];
-                };
-            };
-        };
-    };
-    "post/tags/{id}/localizations": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["TagLocalizationRequest"];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["TagLocalizationResponse"];
                 };
             };
             /** @description Bad Request */

@@ -3,11 +3,12 @@ import { notFound } from "next/navigation";
 import UserCard from "~/components/user-card";
 import { strapi } from "~/strapi/api";
 
-const getList = async () => {
-  const res = await strapi.GET("/accounts", {
+const getList = async (locale = "en") => {
+  const res = await strapi.GET(`/accounts`, {
     params: {
       query: {
         // @ts-ignore
+        locale,
         "populate[tags]": true,
         "populate[xhs]": true,
         "populate[twitter]": true,
@@ -28,8 +29,12 @@ const getList = async () => {
   return data;
 };
 
-export default async function Page() {
-  const res = await getList();
+export default async function Page({
+  params: { locale },
+}: {
+  params: { locale: string };
+}) {
+  const res = await getList(locale);
 
   if (!res) return notFound();
   const { data } = res;
@@ -66,6 +71,7 @@ export default async function Page() {
       <div className="mt-12 grid w-full grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         {data?.map((member, index) => (
           <UserCard
+            locale={locale}
             key={index}
             user={{
               ...member.attributes!,

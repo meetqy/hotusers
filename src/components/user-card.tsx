@@ -10,26 +10,33 @@ export type UserItem = components["schemas"]["Account"];
 
 export type UserCardProps = React.HTMLAttributes<HTMLDivElement> & {
   user: UserItem & { id: number };
+  locale: string;
 };
 
 const Tags = (props: {
   tags: { id: number | undefined; name: string | undefined }[];
+  locale: string;
 }) => {
+  console.log(Tags);
   return props.tags.map(
     (tag) =>
       tag.id &&
       tag.name && (
         <Chip
           key={tag.id}
-          variant="flat"
           size="sm"
           as={Link}
           // href={`/tag/${tag.id}`}
           href={"#"}
           color="primary"
+          variant="flat"
           className="capitalize"
         >
-          {tag.name}
+          {
+            tag[
+              `name${props.locale === "en" ? "" : `_${props.locale}`}` as keyof typeof tag
+            ]
+          }
         </Chip>
       ),
   );
@@ -133,6 +140,7 @@ const UserCard = (props: UserCardProps) => {
       return {
         id: tag.id,
         name: tag.attributes?.name,
+        name_zh: tag.attributes?.name_zh,
       };
     }) ?? [];
 
@@ -152,7 +160,7 @@ const UserCard = (props: UserCardProps) => {
         </Link>
       </h3>
       <div className="mt-2 flex flex-wrap gap-2">
-        {<Tags tags={tagsData} />}
+        {<Tags tags={tagsData} locale={props.locale} />}
       </div>
       <p className="mb-6 mt-2 line-clamp-3 text-default-600">{bio}</p>
 
