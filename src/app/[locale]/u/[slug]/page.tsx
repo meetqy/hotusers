@@ -69,7 +69,7 @@ const Scoicals = (props: { [key in string]: string | undefined }) => {
           variant="bordered"
           color="warning"
         >
-          <span className="text-xl font-medium">x | twitter</span>
+          <span className="text-xl font-medium">twitter</span>
           <Icon icon={"mdi:twitter"} className="h-10 w-10" />
         </Button>
       )}
