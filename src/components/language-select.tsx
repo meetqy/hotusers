@@ -15,6 +15,8 @@ export const LanguageSelect = () => {
       aria-label="Select Language"
       selectedKeys={[params.locale]}
       onChange={(e) => {
+        if (pathname.split("/").length === 2)
+          return router.replace("/" + e.target.value);
         router.push(pathname.replace(/\/.*?\//, `/${e.target.value}/`));
       }}
     >
