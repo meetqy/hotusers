@@ -3,7 +3,7 @@ import { Icon } from "@iconify/react";
 import { strapi } from "~/strapi/api";
 import { notFound } from "next/navigation";
 
-const getUserById = async (id: string, locale = "en") => {
+const getUserBySlug = async (slug: string, locale = "en") => {
   const res = await strapi.GET("/accounts", {
     params: {
       // @ts-ignore
@@ -11,7 +11,7 @@ const getUserById = async (id: string, locale = "en") => {
         locale,
         filters: {
           // @ts-ignore
-          id: { $eq: id },
+          slug: { $eq: slug },
         },
         // @ts-ignore
         "populate[tags]": true,
@@ -154,11 +154,11 @@ const Scoicals = (props: { [key in string]: string | undefined }) => {
 };
 
 export default async function Page({
-  params: { id, locale },
+  params: { slug, locale },
 }: {
-  params: { id: string; locale: string };
+  params: { slug: string; locale: string };
 }) {
-  const data = await getUserById(id, locale);
+  const data = await getUserBySlug(slug, locale);
 
   return (
     <div className="flex min-h-[calc(100vh-4rem)] items-center p-4 xl:px-0">

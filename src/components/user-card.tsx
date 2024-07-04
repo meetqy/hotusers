@@ -154,7 +154,7 @@ const Scoicals = (props: { [key in string]: string | undefined }) => {
 };
 
 const UserCard = (props: UserCardProps) => {
-  const { nickname, avatar, bio, tags, id } = props.user;
+  const { nickname, avatar, bio, tags, slug } = props.user;
   const { className, children } = props;
   const user = props.user;
 
@@ -174,11 +174,11 @@ const UserCard = (props: UserCardProps) => {
         className,
       )}
     >
-      <Link href={`/u/${id}`}>
+      <Link href={`/u/${slug}`}>
         <Avatar className="h-20 w-20" src={avatar?.data?.attributes?.url} />
       </Link>
       <h3 className="mt-2 text-large font-medium">
-        <Link href={`/u/${id}`} className="hover:text-primary">
+        <Link href={`/u/${slug}`} className="hover:text-primary">
           {nickname || children}
         </Link>
       </h3>

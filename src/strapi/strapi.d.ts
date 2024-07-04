@@ -1364,6 +1364,7 @@ export interface components {
             bilibili?: components["schemas"]["AccountAccountComponent"];
             instagram?: components["schemas"]["AccountAccountComponent"];
             weibo?: components["schemas"]["AccountAccountComponent"];
+            slug?: string;
             locale: string;
         };
         AccountRequest: {
@@ -1382,6 +1383,7 @@ export interface components {
                 bilibili?: components["schemas"]["AccountAccountComponent"];
                 instagram?: components["schemas"]["AccountAccountComponent"];
                 weibo?: components["schemas"]["AccountAccountComponent"];
+                slug?: string;
                 locale?: string;
             };
         };
@@ -1719,6 +1721,7 @@ export interface components {
                                         follows?: number;
                                         link?: string;
                                     };
+                                    slug?: string;
                                     /** Format: date-time */
                                     createdAt?: string;
                                     /** Format: date-time */
@@ -1820,6 +1823,7 @@ export interface components {
             bilibili?: components["schemas"]["AccountAccountComponent"];
             instagram?: components["schemas"]["AccountAccountComponent"];
             weibo?: components["schemas"]["AccountAccountComponent"];
+            slug?: string;
             /** Format: date-time */
             createdAt?: string;
             /** Format: date-time */
@@ -2189,6 +2193,7 @@ export interface components {
                             follows?: number;
                             link?: string;
                         };
+                        slug?: string;
                         /** Format: date-time */
                         createdAt?: string;
                         /** Format: date-time */
@@ -2371,7 +2376,9 @@ export interface operations {
                 /** @description Relations to return */
                 populate?: string;
                 /** @description Filters to apply */
-                filters?: Record<string, never>;
+                filters?: {
+                    [key: string]: unknown;
+                };
                 /** @description Locale to apply */
                 locale?: string;
             };
@@ -2802,7 +2809,9 @@ export interface operations {
                 /** @description Relations to return */
                 populate?: string;
                 /** @description Filters to apply */
-                filters?: Record<string, never>;
+                filters?: {
+                    [key: string]: unknown;
+                };
                 /** @description Locale to apply */
                 locale?: string;
             };
